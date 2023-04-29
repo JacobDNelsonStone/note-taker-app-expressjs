@@ -1,19 +1,22 @@
 const router = require('express').Router();
 const fs = require('fs');
-const db = require('../db/db.json')
+const db = require('../db/db.json');
+const { v4: uuidv4 } = require('uuid');
+const { readFromFile, writeToFile, readAndAppend } = require('../utils/fsUtils');
+
 
 router.get('/', (req, res) =>{
-  console.log(req.body);
-
-})
-
-// get single resource
-router.get('/:id', (req, res) =>{
+  res.status(200).json({status: 'success', data: db });
   
 })
 
 // create new resource
 router.post('/', (req, res) =>{
+  console.log(req.body);
+  const newNote = {...req.body, id: uuidv4() }
+  db.push(newNote);
+  writeToFile('db/db.json', db )
+  res.status(200).json({status: 'success', newData: db });
   
 })
 

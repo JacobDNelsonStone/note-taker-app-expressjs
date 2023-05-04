@@ -4,10 +4,9 @@ const db = require('../db/db.json');
 const { v4: uuidv4 } = require('uuid');
 const { readFromFile, writeToFile, readAndAppend } = require('../utils/fsUtils');
 
-
 router.get('/', (req, res) =>{
   res.status(200).json({status: 'success', data: db });
-  readFromFile('db/db.json');
+  
 })
 
 // create new resource
@@ -18,11 +17,6 @@ router.post('/', (req, res) =>{
   console.log(db)
   writeToFile('db/db.json', db )
   res.status(200).json({status: 'success', newData: db });
-  
-})
-
-// update a resource
-router.put('/:id', (req, res) =>{
   
 })
 

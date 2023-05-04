@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
-const api = require('./api')
+const api = require('./api/index');
 
 const PORT = process.env.PORT || 3001;
 
@@ -23,8 +23,6 @@ app.get('/notes', (req, res) =>
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
-
-
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
